@@ -15,9 +15,10 @@
       Modelo modelo = (Modelo) session.getAttribute("modeloselected");
       int i = 0;  %>
 
+ 
 <img src="img/<%=modelo.getImagen()%>" alt="Foto" class="img-fluid">
 
-<%if(acabados!=null){%>
+<%if(acabados.size()>0){%>
 <div class="bg-dark text-white text-center font-weight-bold py-3">Acabados</div>
 
     <div id="accordion" class="accordion text-center">

@@ -20,6 +20,7 @@
 </head>
 <body>
 <%List<Modelo> modelos = (List<Modelo>) session.getAttribute("modelos");
+      List<Modelo> todosmodelos = (List<Modelo>) session.getAttribute("todosmodelos");  
       List<Tipo> tipos = (List<Tipo>) session.getAttribute("tipos");
       Usuario usuario = (Usuario) session.getAttribute("usuario");%>
   <!-- Header -->
@@ -114,7 +115,7 @@
           <div class="modal-content">
           
             <!-- Encabezado de la ventana modal -->
-            <div class="modal-header bg-dark text-white text-center justify-content-center d-flex">
+            <div class="modal-header text-center bg-dark text-white d-flex justify-content-center">
               <h4 class="modal-title"></h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
@@ -144,7 +145,7 @@
                             <p>Se va a proceder a registrar cita a <%=usuario.getNick()%> a fecha de hoy del siguiente modelo:</p> <%}%>
                             <select class="form-control mx-auto text-center" name="reserva" id="reserva">
                                 <option selected disabled value="x">Elija modelo</option>
-                                <%for (Modelo modelo : modelos){%>
+                                <%for (Modelo modelo : todosmodelos){%>
                                 <option value="<%=modelo.getId()%>"><%=modelo.getNombre()%></option>
                                 <%}%>
                             </select>

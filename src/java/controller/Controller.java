@@ -7,7 +7,9 @@ import entities.Tipo;
 import entities.Usuario;
 import java.io.IOException;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -63,6 +65,7 @@ public class Controller extends HttpServlet {
              q = em.createNamedQuery("Modelo.findAll");
              modelos = q.getResultList();
              session.setAttribute("modelos", modelos);
+             session.setAttribute("todosmodelos", modelos);
              
              q = em.createNamedQuery("Tipo.findAll");
              tipos = q.getResultList();
@@ -118,19 +121,21 @@ public class Controller extends HttpServlet {
             session.setAttribute("acabados", acabados);
             
            request.getRequestDispatcher("acabado.jsp").forward(request, response);
-        } /*else if (op.equals("reserva")) {
+        } else if (op.equals("reserva")) {
             
             String reserva = request.getParameter("reserva");
             Modelo modeloselected = em.find(Modelo.class, Short.valueOf(reserva));
             
-            LocalDate fechaActual = LocalDate.now();
-            String fechaActualStr = fechaActual.toString();
+            Usuario thisuser = (Usuario) session.getAttribute("usuario");
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date fecha = new Date();
+            
         
             Cita cita = new Cita();
             cita.setModelo(modeloselected);
-            cita.setUsuario(usuario);
-            cita.setFecha(fechaActualStr);
+            cita.setUsuario(thisuser);
             cita.setId(Short.valueOf("1"));
+            cita.setFecha(sdf.format(fecha));
             
             EntityTransaction t = em.getTransaction();
             t.begin();
@@ -138,7 +143,7 @@ public class Controller extends HttpServlet {
             t.commit();
                 
            request.getRequestDispatcher("home.jsp").forward(request, response);
-        } */
+        } 
     }
 
     /**
