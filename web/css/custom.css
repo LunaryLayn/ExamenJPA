@@ -1,0 +1,18 @@
+.accordion .card {
+    width: 100%;
+  }
+  
+  .accordion .card-header {
+    border-radius: 0;
+  }
+  
+  .accordion .card-header button {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .accordion .collapse {
+    display: block;
+  }
+ 
